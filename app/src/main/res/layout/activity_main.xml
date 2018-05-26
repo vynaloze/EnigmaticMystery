@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <TextClock
         android:id="@+id/simpleTextClock"
@@ -24,5 +24,9 @@
     <!--Date ??? -->
 
     <!--Weather-->
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forecastGraph" />
 
 </android.support.constraint.ConstraintLayout>
