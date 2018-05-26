@@ -5,15 +5,13 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import com.vynaloze.smartmirror.model.date.DateFormatter;
+
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class CalendarViewModel extends ViewModel {
     private static final String TAG = "CalendarViewModel";
-    private static final int PERIOD = 15;
 
     private MutableLiveData<String> date;
 
@@ -27,17 +25,15 @@ public class CalendarViewModel extends ViewModel {
 
     private void updateDate() {
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
-        executor.scheduleAtFixedRate(new DateUpdater(), 0, PERIOD, TimeUnit.SECONDS);
-    }
-
-    private class DateUpdater implements Runnable {
-        @Override
-        public void run() {
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault());
-            String formattedDate = format.format(calendar.getTime());
-            date.postValue(formattedDate);
-            Log.d(TAG, "Updated date to " + formattedDate);
-        }
+        executor.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                String formattedDate = DateFormatter.getDate();
+                if (!formattedDate.equals(date.getValue())) {
+                    date.postValue(formattedDate);
+                    Log.d(TAG, "Updated date to " + formattedDate);
+                }
+            }
+        }, 0, 15, TimeUnit.SECONDS);
     }
 }
