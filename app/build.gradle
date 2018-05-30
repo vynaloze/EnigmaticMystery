@@ -51,7 +51,7 @@ dependencies {
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
 
     implementation 'com.annimon:stream:1.2.0'
-    implementation 'com.jjoe64:graphview:4.2.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     testImplementation 'org.json:json:20140107'
     implementation 'com.android.volley:volley:1.1.0'
 }

@@ -5,9 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.annimon.stream.Stream;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.DataPoint;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.vynaloze.smartmirror.model.weather.WeatherJSONParser;
 import com.vynaloze.smartmirror.model.weather.web.ForecastRequester;
 import com.vynaloze.smartmirror.model.weather.web.VolleyCallback;
@@ -21,14 +20,14 @@ import java.util.concurrent.TimeUnit;
 public class WeatherViewModel extends ViewModel {
     private static final String TAG = "WeatherViewModel";
     private ForecastRequester forecastRequester = new ForecastRequester();
-    private MutableLiveData<BarGraphSeries<DataPoint>> series;
+    private MutableLiveData<BarDataSet> dataSet;
 
-    public LiveData<BarGraphSeries<DataPoint>> getSeries() {
-        if (series == null) {
-            series = new MutableLiveData<>();
+    public LiveData<BarDataSet> getDataSet() {
+        if (dataSet == null) {
+            dataSet = new MutableLiveData<>();
             fetchData();
         }
-        return series;
+        return dataSet;
     }
 
     private void fetchData() {
@@ -39,9 +38,8 @@ public class WeatherViewModel extends ViewModel {
                 forecastRequester.request(new VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject forecast) {
-                        List<DataPoint> list = WeatherJSONParser.parsePrecipProbability(forecast);
-                        DataPoint[] dataPoints = Stream.of(list).toArray(DataPoint[]::new);
-                        series.postValue(new BarGraphSeries<>(dataPoints));
+                        List<BarEntry> entryList = WeatherJSONParser.parsePrecipProbability(forecast);
+                        dataSet.postValue(new BarDataSet(entryList, "BarDataSet"));
                         Log.d(TAG, "Updated weather");
                     }
                 });

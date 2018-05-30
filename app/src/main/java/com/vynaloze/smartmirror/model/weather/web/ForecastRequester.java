@@ -15,6 +15,7 @@ import org.json.JSONObject;
 public class ForecastRequester {
     private static final String TAG = "ForecastRequester";
     private static final String URL = "https://api.darksky.net/forecast/285d2f7ba2b4c6a886a3356737900fb9/51.750000,19.466670";
+    private static final String URL2 = "https://api.darksky.net/forecast/285d2f7ba2b4c6a886a3356737900fb9/25.2994,91.5808";      //rainy india...
     private RequestQueue queue;
 
     public ForecastRequester() {
@@ -22,6 +23,7 @@ public class ForecastRequester {
     }
 
     public void request(VolleyCallback callback) {
+//        String URL = new Random().nextInt()%2==0 ? ForecastRequester.URL : URL2;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
