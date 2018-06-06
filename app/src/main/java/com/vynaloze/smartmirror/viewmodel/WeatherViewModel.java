@@ -14,20 +14,28 @@ import com.vynaloze.smartmirror.model.weather.web.VolleyCallback;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class WeatherViewModel extends ViewModel {
     private static final String TAG = "WeatherViewModel";
     private ForecastRequester forecastRequester = new ForecastRequester();
-    private MutableLiveData<BarDataSet> dataSet;
+    private MutableLiveData<BarDataSet> precipProbabilityDataSet;
+    private MutableLiveData<Map<String, String>> currentConditions;
 
-    public LiveData<BarDataSet> getDataSet() {
-        if (dataSet == null) {
-            dataSet = new MutableLiveData<>();
-            fetchData();
-        }
-        return dataSet;
+    public WeatherViewModel() {
+        precipProbabilityDataSet = new MutableLiveData<>();
+        currentConditions = new MutableLiveData<>();
+        fetchData();
+    }
+
+    public LiveData<BarDataSet> getPrecipProbabilityDataSet() {
+        return precipProbabilityDataSet;
+    }
+
+    public LiveData<Map<String, String>> getCurrentConditions() {
+        return currentConditions;
     }
 
     private void fetchData() {
@@ -39,7 +47,11 @@ public class WeatherViewModel extends ViewModel {
                     @Override
                     public void onSuccess(JSONObject forecast) {
                         List<BarEntry> entryList = WeatherJSONParser.parsePrecipProbability(forecast);
-                        dataSet.postValue(new BarDataSet(entryList, "BarDataSet"));
+                        precipProbabilityDataSet.postValue(new BarDataSet(entryList, "BarDataSet"));
+
+                        Map<String, String> current = WeatherJSONParser.parseCurrentConditions(forecast);
+                        currentConditions.postValue(current);
+
                         Log.d(TAG, "Updated weather");
                     }
                 });

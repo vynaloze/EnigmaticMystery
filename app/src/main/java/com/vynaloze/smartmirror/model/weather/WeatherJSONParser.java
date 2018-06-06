@@ -7,7 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WeatherJSONParser {
     public static List<BarEntry> parsePrecipProbability(JSONObject forecast) {
@@ -26,5 +28,17 @@ public class WeatherJSONParser {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static Map<String, String> parseCurrentConditions(JSONObject forecast) {
+        Map<String, String> map = new HashMap<>();
+        try {
+            JSONObject currently = forecast.getJSONObject("currently");
+            map.put("icon", currently.getString("icon"));
+            map.put("temperature", String.valueOf((int) currently.getDouble("temperature")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 }

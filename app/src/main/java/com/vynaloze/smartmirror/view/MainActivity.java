@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -33,7 +35,21 @@ public class MainActivity extends FragmentActivity {
         calendarViewModel.getDate().observe(this, date -> calendarTextView.setText(date));
 
         WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
-        weatherViewModel.getDataSet().observe(this, graphHandler::updateData);
+        weatherViewModel.getPrecipProbabilityDataSet().observe(this, graphHandler::updateData);
+
+        WebView currentWeatherImage = findViewById(R.id.currentWeatherImage);
+        TextView currentTemperature = findViewById(R.id.currentTemperature);
+        currentWeatherImage.getSettings().setJavaScriptEnabled(true);
+        currentWeatherImage.loadUrl("file:///android_asset/weatherImage.html");
+
+        weatherViewModel.getCurrentConditions().observe(this, map -> {
+            currentWeatherImage.setWebViewClient(new WebViewClient() {
+                public void onPageFinished(WebView view, String url) {
+                    view.loadUrl("javascript:set_icon_type('" + map.get("icon") + "')");
+                }
+            });
+            currentTemperature.setText(map.get("temperature") + "°C");
+        });
 
     }
 
