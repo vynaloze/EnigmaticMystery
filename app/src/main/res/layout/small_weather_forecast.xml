@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <WebView
+        android:id="@+id/smallForecastIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/smallForecastTextDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="@id/smallForecastIcon"
+        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+
+    <TextView
+        android:id="@+id/smallForecastUpperTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/smallForecastTextDay"
+        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+
+    <TextView
+        android:id="@+id/smallForecastLowerTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/smallForecastUpperTemperature"
+        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+
+</merge>

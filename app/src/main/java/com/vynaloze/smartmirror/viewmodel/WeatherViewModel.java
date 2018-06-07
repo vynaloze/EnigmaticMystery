@@ -22,11 +22,13 @@ public class WeatherViewModel extends ViewModel {
     private static final String TAG = "WeatherViewModel";
     private ForecastRequester forecastRequester = new ForecastRequester();
     private MutableLiveData<BarDataSet> precipProbabilityDataSet;
-    private MutableLiveData<Map<String, String>> currentConditions;
+    private MutableLiveData<Map<String, String>> currentWeatherInfo;
+    private MutableLiveData<List<Map<String, String>>> dailyForecast;
 
     public WeatherViewModel() {
         precipProbabilityDataSet = new MutableLiveData<>();
-        currentConditions = new MutableLiveData<>();
+        currentWeatherInfo = new MutableLiveData<>();
+        dailyForecast = new MutableLiveData<>();
         fetchData();
     }
 
@@ -34,8 +36,12 @@ public class WeatherViewModel extends ViewModel {
         return precipProbabilityDataSet;
     }
 
-    public LiveData<Map<String, String>> getCurrentConditions() {
-        return currentConditions;
+    public LiveData<Map<String, String>> getCurrentWeatherInfo() {
+        return currentWeatherInfo;
+    }
+
+    public LiveData<List<Map<String, String>>> getDailyForecast() {
+        return dailyForecast;
     }
 
     private void fetchData() {
@@ -49,8 +55,11 @@ public class WeatherViewModel extends ViewModel {
                         List<BarEntry> entryList = WeatherJSONParser.parsePrecipProbability(forecast);
                         precipProbabilityDataSet.postValue(new BarDataSet(entryList, "BarDataSet"));
 
-                        Map<String, String> current = WeatherJSONParser.parseCurrentConditions(forecast);
-                        currentConditions.postValue(current);
+                        Map<String, String> current = WeatherJSONParser.parseCurrentWeatherInfo(forecast);
+                        currentWeatherInfo.postValue(current);
+
+                        List<Map<String, String>> daily = WeatherJSONParser.parseDailyForecast(forecast);
+                        dailyForecast.postValue(daily);
 
                         Log.d(TAG, "Updated weather");
                     }

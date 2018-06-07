@@ -45,4 +45,25 @@
         app:layout_constraintTop_toTopOf="@id/currentWeatherImage"
         app:layout_constraintLeft_toRightOf="@id/currentWeatherImage" />
 
+    <com.vynaloze.smartmirror.view.WeatherForecastView
+        android:id="@+id/weatherForecastView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+
+    <com.vynaloze.smartmirror.view.WeatherForecastView
+        android:id="@+id/weatherForecastView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/weatherForecastView1"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+
+    <com.vynaloze.smartmirror.view.WeatherForecastView
+        android:id="@+id/weatherForecastView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/weatherForecastView2"
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+
+
 </android.support.constraint.ConstraintLayout>

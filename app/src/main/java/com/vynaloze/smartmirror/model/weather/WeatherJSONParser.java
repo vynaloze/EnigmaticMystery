@@ -30,7 +30,7 @@ public class WeatherJSONParser {
         return list;
     }
 
-    public static Map<String, String> parseCurrentConditions(JSONObject forecast) {
+    public static Map<String, String> parseCurrentWeatherInfo(JSONObject forecast) {
         Map<String, String> map = new HashMap<>();
         try {
             JSONObject currently = forecast.getJSONObject("currently");
@@ -40,5 +40,24 @@ public class WeatherJSONParser {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public static List<Map<String, String>> parseDailyForecast(JSONObject forecast) {
+        List<Map<String, String>> list = new ArrayList<>();
+        try {
+            JSONObject daily = forecast.getJSONObject("daily");
+            JSONArray data = daily.getJSONArray("data");
+            for (int i = 0; i < data.length() / 2; i++) {       // div/2 to have 24h only
+                JSONObject entry = data.getJSONObject(i);
+                Map<String, String> map = new HashMap<>();
+                map.put("icon", entry.getString("icon"));
+                map.put("temperatureHigh", String.valueOf((int) entry.getDouble("temperatureHigh")));
+                map.put("temperatureLow", String.valueOf((int) entry.getDouble("temperatureLow")));
+                list.add(map);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
