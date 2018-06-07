@@ -30,40 +30,31 @@
         android:layout_height="600dp"
         app:layout_constraintTop_toTopOf="@id/calendarTextView" />
 
-    <WebView
-        android:id="@+id/currentWeatherImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/forecastGraph" />
-
-    <TextView
-        android:id="@+id/currentTemperature"
+    <com.vynaloze.smartmirror.view.weather.WeatherInfoView
+        android:id="@+id/weatherInfoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/currentWeatherImage"
-        app:layout_constraintLeft_toRightOf="@id/currentWeatherImage" />
+        app:layout_constraintTop_toBottomOf="@id/forecastGraph" />
 
-    <com.vynaloze.smartmirror.view.WeatherForecastView
+    <com.vynaloze.smartmirror.view.weather.WeatherForecastView
         android:id="@+id/weatherForecastView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+        app:layout_constraintTop_toBottomOf="@id/weatherInfoView" />
 
-    <com.vynaloze.smartmirror.view.WeatherForecastView
+    <com.vynaloze.smartmirror.view.weather.WeatherForecastView
         android:id="@+id/weatherForecastView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/weatherForecastView1"
-        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+        app:layout_constraintLeft_toRightOf="@id/weatherForecastView1"
+        app:layout_constraintTop_toBottomOf="@id/weatherInfoView" />
 
-    <com.vynaloze.smartmirror.view.WeatherForecastView
+    <com.vynaloze.smartmirror.view.weather.WeatherForecastView
         android:id="@+id/weatherForecastView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@+id/weatherForecastView2"
-        app:layout_constraintTop_toBottomOf="@+id/currentWeatherImage" />
+        app:layout_constraintLeft_toRightOf="@id/weatherForecastView2"
+        app:layout_constraintTop_toBottomOf="@id/weatherInfoView" />
 
 
 </android.support.constraint.ConstraintLayout>

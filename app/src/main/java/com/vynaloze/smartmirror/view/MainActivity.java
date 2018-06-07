@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.vynaloze.smartmirror.R;
-import com.vynaloze.smartmirror.view.graph.ForecastGraphHandler;
+import com.vynaloze.smartmirror.view.weather.WeatherForecastView;
+import com.vynaloze.smartmirror.view.weather.WeatherForecastViewHandler;
+import com.vynaloze.smartmirror.view.weather.WeatherInfoViewHandler;
+import com.vynaloze.smartmirror.view.weather.graph.ForecastGraphHandler;
 import com.vynaloze.smartmirror.viewmodel.CalendarViewModel;
 import com.vynaloze.smartmirror.viewmodel.WeatherViewModel;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity {
 
-    TextView calendarTextView; //todo ui to classes
+    TextView calendarTextView; //todo ui to classes (really??)
     BarChart forecastGraph;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -33,40 +34,29 @@ public class MainActivity extends FragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);   //stop screen from dimming
         setContentView(R.layout.activity_main);
 
-        // calendar (fixme, this mess. finally...)
+        // calendar
         calendarTextView = findViewById(R.id.calendarTextView);
         CalendarViewModel calendarViewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
         calendarViewModel.getDate().observe(this, date -> calendarTextView.setText(date));
 
-        // forecast graph (todo, always todos)
+        // forecast graph
         forecastGraph = findViewById(R.id.forecastGraph);
         ForecastGraphHandler graphHandler = new ForecastGraphHandler(forecastGraph);
         WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
         weatherViewModel.getPrecipProbabilityDataSet().observe(this, graphHandler::updateData);
 
-        // current weather (should I repeat? fixme!)
-        WebView currentWeatherImage = findViewById(R.id.currentWeatherImage);
-        TextView currentTemperature = findViewById(R.id.currentTemperature);
-        currentWeatherImage.getSettings().setJavaScriptEnabled(true);
-        currentWeatherImage.loadUrl("file:///android_asset/largeWeatherImage.html");
+        // current weather
+        WeatherInfoViewHandler weatherInfoViewHandler = new WeatherInfoViewHandler(findViewById(R.id.weatherInfoView));
+        weatherViewModel.getCurrentWeatherInfo().observe(this, weatherInfoViewHandler::updateData);
 
-        weatherViewModel.getCurrentWeatherInfo().observe(this, map -> {
-            currentWeatherImage.setWebViewClient(new WebViewClient() {
-                public void onPageFinished(WebView view, String url) {
-                    view.loadUrl("javascript:set_icon_type('" + map.get("icon") + "')");
-                }
-            });
-            currentTemperature.setText(map.get("temperature") + "°C");
-        });
-
-        // and again... todo.. but it's at least better
+        // 3-day forecast
         List<WeatherForecastView> dailyForecast = Arrays.asList(
                 findViewById(R.id.weatherForecastView1),
                 findViewById(R.id.weatherForecastView2),
                 findViewById(R.id.weatherForecastView3)
         );
-        WeatherViewHandler weatherViewHandler = new WeatherViewHandler(dailyForecast);
-        weatherViewModel.getDailyForecast().observe(this, weatherViewHandler::updateData);
+        WeatherForecastViewHandler weatherForecastViewHandler = new WeatherForecastViewHandler(dailyForecast);
+        weatherViewModel.getDailyForecast().observe(this, weatherForecastViewHandler::updateData);
 
     }
 

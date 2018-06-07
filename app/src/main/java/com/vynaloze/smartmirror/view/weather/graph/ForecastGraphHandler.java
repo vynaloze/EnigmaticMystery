@@ -1,4 +1,4 @@
-package com.vynaloze.smartmirror.view.graph;
+package com.vynaloze.smartmirror.view.weather.graph;
 
 import android.support.v4.content.ContextCompat;
 import android.util.Log;

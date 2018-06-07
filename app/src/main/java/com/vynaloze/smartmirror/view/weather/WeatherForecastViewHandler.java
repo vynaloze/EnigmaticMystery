@@ -1,6 +1,7 @@
-package com.vynaloze.smartmirror.view;
+package com.vynaloze.smartmirror.view.weather;
 
 import android.annotation.SuppressLint;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -10,10 +11,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class WeatherViewHandler {
+public class WeatherForecastViewHandler {
     private List<WeatherForecastView> viewList;
 
-    public WeatherViewHandler(List<WeatherForecastView> viewList) {
+    public WeatherForecastViewHandler(List<WeatherForecastView> viewList) {
         this.viewList = viewList;
     }
 
@@ -38,6 +39,7 @@ public class WeatherViewHandler {
     @SuppressLint("SetJavaScriptEnabled")
     private void prepareIcon(WebView icon, Map<String, String> forecast) {
         icon.getSettings().setJavaScriptEnabled(true);
+        icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);  //disabled hardware acceleration.. strangely, it significantly improves performance
         icon.loadUrl("file:///android_asset/smallWeatherImage.html");
         icon.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {

@@ -1,4 +1,4 @@
-package com.vynaloze.smartmirror.view;
+package com.vynaloze.smartmirror.view.weather;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
@@ -34,7 +34,7 @@ public class WeatherForecastView extends ConstraintLayout {
     private void initializeViews(Context context) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.small_weather_forecast, this);
+        inflater.inflate(R.layout.weather_forecast, this);
     }
 
     @Override

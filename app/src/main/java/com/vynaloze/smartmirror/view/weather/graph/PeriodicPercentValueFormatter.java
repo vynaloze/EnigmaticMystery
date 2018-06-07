@@ -1,4 +1,4 @@
-package com.vynaloze.smartmirror.view.graph;
+package com.vynaloze.smartmirror.view.weather.graph;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
