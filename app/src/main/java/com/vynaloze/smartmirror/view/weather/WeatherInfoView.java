@@ -5,13 +5,16 @@ import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.webkit.WebView;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.vynaloze.smartmirror.R;
+import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
 public class WeatherInfoView extends ConstraintLayout {
     private WebView weatherIcon;
     private TextView temperature;
+    private TextSwitcher textComment;
 
     public WeatherInfoView(Context context) {
         super(context);
@@ -39,6 +42,16 @@ public class WeatherInfoView extends ConstraintLayout {
         super.onFinishInflate();
         weatherIcon = findViewById(R.id.weatherInfoImage);
         temperature = findViewById(R.id.currentTemperature);
+        textComment = findViewById(R.id.weatherComment);
+        initializeTextSwitcher();
+    }
+
+    private void initializeTextSwitcher() {
+        Context context = ApplicationContextProvider.getContext();
+        textComment.setInAnimation(context, android.R.anim.slide_in_left);
+        textComment.setOutAnimation(context, android.R.anim.slide_out_right);
+        textComment.addView(new TextView(context));
+        textComment.addView(new TextView(context));
     }
 
     public WebView getWeatherIcon() {
@@ -47,5 +60,9 @@ public class WeatherInfoView extends ConstraintLayout {
 
     public TextView getTemperature() {
         return temperature;
+    }
+
+    public TextSwitcher getTextComment() {
+        return textComment;
     }
 }

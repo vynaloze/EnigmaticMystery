@@ -13,6 +13,7 @@ import com.vynaloze.smartmirror.model.weather.web.VolleyCallback;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -24,11 +25,15 @@ public class WeatherViewModel extends ViewModel {
     private MutableLiveData<BarDataSet> precipProbabilityDataSet;
     private MutableLiveData<Map<String, String>> currentWeatherInfo;
     private MutableLiveData<List<Map<String, String>>> dailyForecast;
+    private List<String> weatherComments;
+    private MutableLiveData<String> currentWeatherComment;
 
     public WeatherViewModel() {
         precipProbabilityDataSet = new MutableLiveData<>();
         currentWeatherInfo = new MutableLiveData<>();
         dailyForecast = new MutableLiveData<>();
+        weatherComments = new ArrayList<>();
+        currentWeatherComment = new MutableLiveData<>();
         fetchData();
     }
 
@@ -44,8 +49,12 @@ public class WeatherViewModel extends ViewModel {
         return dailyForecast;
     }
 
+    public LiveData<String> getCurrentWeatherComment() {
+        return currentWeatherComment;
+    }
+
     private void fetchData() {
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
         executor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -61,11 +70,31 @@ public class WeatherViewModel extends ViewModel {
                         List<Map<String, String>> daily = WeatherJSONParser.parseDailyForecast(forecast);
                         dailyForecast.postValue(daily);
 
+                        weatherComments = WeatherJSONParser.parseWeatherComments(forecast);
+
                         Log.d(TAG, "Updated weather");
                     }
                 });
                 Log.d(TAG, "Sent request");
             }
         }, 0, 15, TimeUnit.MINUTES);
+
+        executor.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                if (currentWeatherComment.getValue() == null) {             //todo new class 4 that?
+                    currentWeatherComment.postValue(weatherComments.get(0));
+                } else {
+                    int currentlyDisplayed = weatherComments.indexOf(currentWeatherComment.getValue());
+                    int nextOne = currentlyDisplayed + 1;
+                    if (nextOne < weatherComments.size()) {
+                        currentWeatherComment.postValue(weatherComments.get(nextOne));
+                    } else {
+                        currentWeatherComment.postValue(weatherComments.get(0));
+                    }
+                }
+
+            }
+        }, 5, 15, TimeUnit.SECONDS);
     }
 }

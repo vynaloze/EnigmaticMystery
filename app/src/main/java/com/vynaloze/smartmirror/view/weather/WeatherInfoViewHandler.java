@@ -19,6 +19,10 @@ public class WeatherInfoViewHandler {
         view.getTemperature().setText(forecast.get("temperature") + "°C");
     }
 
+    public void updateWeatherComment(String comment) {
+        view.getTextComment().setText(comment);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     private void prepareIcon(WebView icon, Map<String, String> forecast) {
         icon.getSettings().setJavaScriptEnabled(true);

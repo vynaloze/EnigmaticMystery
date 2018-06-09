@@ -48,6 +48,7 @@ public class MainActivity extends FragmentActivity {
         // current weather
         WeatherInfoViewHandler weatherInfoViewHandler = new WeatherInfoViewHandler(findViewById(R.id.weatherInfoView));
         weatherViewModel.getCurrentWeatherInfo().observe(this, weatherInfoViewHandler::updateData);
+        weatherViewModel.getCurrentWeatherComment().observe(this, weatherInfoViewHandler::updateWeatherComment);
 
         // 3-day forecast
         List<WeatherForecastView> dailyForecast = Arrays.asList(
