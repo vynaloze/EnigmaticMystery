@@ -11,7 +11,7 @@ public class PeriodicPercentValueFormatter implements IValueFormatter {
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        if (entry.getX() % 3 == 0) {
+        if (entry.getX() % 4 == 0) {
             return decimalFormat.format(value);
         } else {
             return "";

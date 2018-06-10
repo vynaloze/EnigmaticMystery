@@ -1,0 +1,141 @@
+/*--------------------ODJAZDY------------------------*/
+    body.VTBL{text-align: center;/*! padding:0; */background-color:#000000; margin:10px;}
+
+.realtable-stop
+{
+    width:100%;
+    border-collapse:collapse;
+    text-transform: uppercase;
+    color: White;
+    font-family:Verdana;
+    padding:	10px;
+}
+
+.realtable-stop tr th,.realtable-stop tr td
+{
+    background-color:#000000;
+    text-transform: uppercase;
+    color:      #fff;
+    font-size: 39px;
+    font-weight:bold;
+    font-family:Verdana;
+    padding:	10px;
+}
+
+.realtable-stop tr th
+{
+    color:#ffffff;
+    height:20pt;
+}
+.realtable-stop tr td.dzien
+{
+    text-align:right; 
+    display:none; 
+    height:20px;
+}
+
+.realtable-stop tr th.blank
+{
+    border:				10px;
+    height:				20pt;
+    width:				61px;
+}
+.realtable-header 
+{   
+    width:100%;
+    border-collapse:collapse;
+    border-spacing:0px;
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:29px;
+}
+
+.realtable-header tr th
+{
+    border-collapse:	collapse;
+    padding:5px;
+    margin:5px;
+    color:#000000;
+    background-color:#D8D8EB;
+} 
+
+.realtable-header tr th.veh
+{
+    width:0px;
+}
+.realtable-header tr th.route
+{
+    width:100px;
+    text-align:right;
+    font-size:30px;
+    font-weight: bold;
+}
+.realtable-header tr th.dir
+{
+    text-align:left;
+}
+.realtable-header tr th.time
+{
+	text-align:right; 
+}
+.realtable-header tr th.blank
+{
+    border:				10px;
+    height:				20pt;
+    width:				61px;
+    background-color:	white;
+}
+
+.realtable
+{
+     border:  5pt solid #D8D8EB;
+     margin:0px;
+     padding:0px;
+     
+     width:100%;
+     border-collapse:collapse;
+     border-spacing: 0px 0px;
+     caption-side:bottom;
+     empty-cells:hide;
+     table-layout:auto;
+     font-weight: bold;
+     color:white;
+}
+
+.realtable tr td
+{
+    margin:0px 0px 0px 0px;
+    font-family:	Verdana;
+    font-weight:normal;
+    font-weight:	bold;
+    font-size:23px;
+    padding:5px;
+}
+.realtable-header tr td.veh
+{
+    width:26px;
+}
+
+.realtable tr td.route
+{
+	width:90px;
+	text-align:right;
+	font-size:30px;
+	font-weight: bold;
+	border:2px solid #D8D8EB;
+	background-color:#000000;
+}
+.realtable tr td.dir
+{
+    text-align:left; 
+}
+.realtable tr td.time
+{
+	text-align:right; 
+}
+
+.td_color{color:Black;}
+.red_font{color: White;}
+.green_font{color: white;}
+.blink {color:white;font-size:24px;display:inline;} 
+

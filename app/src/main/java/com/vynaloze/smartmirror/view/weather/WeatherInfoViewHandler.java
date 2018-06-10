@@ -20,7 +20,14 @@ public class WeatherInfoViewHandler {
     }
 
     public void updateWeatherComment(String comment) {
+        view.getTextComment().getCurrentView().setSelected(false);              // disabling scrolling for future iteration
         view.getTextComment().setText(comment);
+        view.getTextComment().getCurrentView().postDelayed(new Runnable() {     // wait 3 sec and start scrolling
+            @Override
+            public void run() {
+                view.getTextComment().getCurrentView().setSelected(true);
+            }
+        }, 3000);
     }
 
     @SuppressLint("SetJavaScriptEnabled")

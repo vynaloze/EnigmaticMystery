@@ -43,7 +43,7 @@ public class WeatherJSONParser {
     }
 
     public static List<Map<String, String>> parseDailyForecast(JSONObject forecast) {
-        final int DAYS = 3;
+        final int DAYS = 5;
         List<Map<String, String>> list = new ArrayList<>();
         try {
             JSONObject daily = forecast.getJSONObject("daily");

@@ -1,7 +1,9 @@
 package com.vynaloze.smartmirror.view.weather;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.constraint.ConstraintLayout;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.webkit.WebView;
@@ -48,10 +50,21 @@ public class WeatherInfoView extends ConstraintLayout {
 
     private void initializeTextSwitcher() {
         Context context = ApplicationContextProvider.getContext();
-        textComment.setInAnimation(context, android.R.anim.slide_in_left);
-        textComment.setOutAnimation(context, android.R.anim.slide_out_right);
-        textComment.addView(new TextView(context));
-        textComment.addView(new TextView(context));
+        textComment.setInAnimation(context, android.R.anim.fade_in);        //todo slide from bottom or another better animation
+        textComment.setOutAnimation(context, android.R.anim.fade_out);
+        textComment.addView(prepareTextView(context));
+        textComment.addView(prepareTextView(context));
+    }
+
+    private TextView prepareTextView(Context context) {
+        TextView textView = new TextView(context);
+        textView.setTextAppearance(R.style.TextViewStyle);
+        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        textView.setMarqueeRepeatLimit(-1);
+        textView.setHorizontalFadingEdgeEnabled(true);
+        return textView;
     }
 
     public WebView getWeatherIcon() {

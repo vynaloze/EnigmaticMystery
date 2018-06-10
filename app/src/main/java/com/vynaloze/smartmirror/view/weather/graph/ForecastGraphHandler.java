@@ -11,7 +11,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.vynaloze.smartmirror.R;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
-public class ForecastGraphHandler {
+public class ForecastGraphHandler {                             // TODO SHOW ONLY BIGGEST VALUE SO IT NOT OVERLAPS
     private static final String TAG = "ForecastGraphHandler";
     private BarChart graph;
     private BarData barData;
@@ -28,6 +28,8 @@ public class ForecastGraphHandler {
     public void updateData(BarDataSet dataSet) {
         dataSet.setValueFormatter(new PeriodicPercentValueFormatter());
         dataSet.setValueTextColor(whiteColor);
+        dataSet.setValueTextSize(14f);
+        dataSet.setColor(whiteColor);
 
         removeData();
         barData.addDataSet(dataSet);
@@ -48,7 +50,6 @@ public class ForecastGraphHandler {
         XAxis xAxis = graph.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f);
         xAxis.setTextColor(whiteColor);
         xAxis.setTextSize(14f);
         xAxis.setValueFormatter(new DayAxisValueFormatter());

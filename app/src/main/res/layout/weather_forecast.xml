@@ -2,35 +2,44 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <WebView
-        android:id="@+id/smallForecastIcon"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
-
     <TextView
         android:id="@+id/smallForecastTextDay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="@id/smallForecastIcon"
-        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <WebView
+        android:id="@+id/smallForecastIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/smallForecastTextDay"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/smallForecastUpperTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/smallForecastTextDay"
-        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@id/smallForecastIcon"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/smallForecastLowerTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@id/smallForecastUpperTemperature"
-        app:layout_constraintLeft_toRightOf="@id/smallForecastIcon" />
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@id/smallForecastIcon"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </merge>
