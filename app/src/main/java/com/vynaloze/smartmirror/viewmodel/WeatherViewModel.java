@@ -95,6 +95,6 @@ public class WeatherViewModel extends ViewModel {
                 }
 
             }
-        }, 5, 15, TimeUnit.SECONDS);
+        }, 5, 23, TimeUnit.SECONDS);
     }
 }
