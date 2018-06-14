@@ -72,7 +72,7 @@ public class PeriodicPercentValueFormatter implements IValueFormatter {
         private void removeExcessIndexes() {
             AtomicInteger iteration = new AtomicInteger(0);
             while (indexesToShow.size() > dataSet.getValues().size() / 4) {
-                indexesToShow = Stream.of(indexesToShow).filter(i -> i % 4 != iteration.get() || i == indexOfMaxValue).toList();
+                indexesToShow = Stream.of(indexesToShow).filter(i -> i % 8 != iteration.get() || i == indexOfMaxValue).toList();
                 iteration.addAndGet(1);
                 Log.d(TAG, indexesToShow.toString());
             }
