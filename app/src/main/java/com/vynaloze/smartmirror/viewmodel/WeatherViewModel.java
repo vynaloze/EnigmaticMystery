@@ -7,9 +7,9 @@ import android.util.Log;
 
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.vynaloze.smartmirror.model.weather.WeatherJSONParser;
 import com.vynaloze.smartmirror.model.weather.web.ForecastRequester;
 import com.vynaloze.smartmirror.model.weather.web.VolleyCallback;
+import com.vynaloze.smartmirror.model.weather.web.WeatherJSONParser;
 
 import org.json.JSONObject;
 

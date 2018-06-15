@@ -12,7 +12,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PeriodicPercentValueFormatter implements IValueFormatter {
     private DecimalFormat decimalFormat = new DecimalFormat("##%");
@@ -45,7 +44,6 @@ public class PeriodicPercentValueFormatter implements IValueFormatter {
         private List<Integer> calculateIndexesToShow() {
             putIndexOfMaxValue();
             putIndexesWithSimilarValues();
-            removeExcessIndexes();
             return indexesToShow;
         }
 
@@ -57,25 +55,28 @@ public class PeriodicPercentValueFormatter implements IValueFormatter {
         }
 
         private void putIndexesWithSimilarValues() {
-            final float MAX_DIFFERENCE = 0.05f;
             for (int i = 1; i < dataSet.getValues().size() - 1; i++) {
                 float previous = dataSet.getEntryForIndex(i - 1).getY();
                 float current = dataSet.getEntryForIndex(i).getY();
                 float next = dataSet.getEntryForIndex(i + 1).getY();
-                if (current - previous < MAX_DIFFERENCE && next - previous < MAX_DIFFERENCE) {
+                if (isInBounds(previous, current, next) && !isNearAnotherOne(i)) {
                     indexesToShow.add(i);
                     Log.d(TAG, "Added index " + i + "; values(previous,current,next): " + previous + current + next);
                 }
             }
         }
 
-        private void removeExcessIndexes() {
-            AtomicInteger iteration = new AtomicInteger(0);
-            while (indexesToShow.size() > dataSet.getValues().size() / 4) {
-                indexesToShow = Stream.of(indexesToShow).filter(i -> i % 8 != iteration.get() || i == indexOfMaxValue).toList();
-                iteration.addAndGet(1);
-                Log.d(TAG, indexesToShow.toString());
-            }
+        private boolean isInBounds(float var1, float var2, float var3) {
+            final float MAX_DIFFERENCE = 0.05f;
+            return var2 - var1 < MAX_DIFFERENCE && var3 - var2 < MAX_DIFFERENCE;
         }
+
+        private boolean isNearAnotherOne(int index) {
+            return indexesToShow.contains(index + 2)
+                    || indexesToShow.contains(index + 1)
+                    || indexesToShow.contains(index - 1)
+                    || indexesToShow.contains(index - 2);
+        }
+
     }
 }

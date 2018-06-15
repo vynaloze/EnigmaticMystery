@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.vynaloze.smartmirror.R;
+import com.vynaloze.smartmirror.controller.WebServer;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastView;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastViewHandler;
 import com.vynaloze.smartmirror.view.weather.WeatherInfoViewHandler;
@@ -17,6 +18,7 @@ import com.vynaloze.smartmirror.view.weather.graph.ForecastGraphHandler;
 import com.vynaloze.smartmirror.viewmodel.CalendarViewModel;
 import com.vynaloze.smartmirror.viewmodel.WeatherViewModel;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,6 +66,14 @@ public class MainActivity extends FragmentActivity {
         // probably some bus info handling? todo
 
         // init web server
+        WebServer webServer = new WebServer(this);
+        try {
+            webServer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        TextView ipAddress = findViewById(R.id.ipAddress);
+        ipAddress.setText(webServer.getIpAddress());
 
     }
 

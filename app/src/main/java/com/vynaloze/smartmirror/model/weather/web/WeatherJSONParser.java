@@ -1,4 +1,4 @@
-package com.vynaloze.smartmirror.model.weather;
+package com.vynaloze.smartmirror.model.weather.web;
 
 import com.github.mikephil.charting.data.BarEntry;
 
