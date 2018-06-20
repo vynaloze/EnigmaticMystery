@@ -16,6 +16,7 @@ import com.vynaloze.smartmirror.view.weather.WeatherForecastViewHandler;
 import com.vynaloze.smartmirror.view.weather.WeatherInfoViewHandler;
 import com.vynaloze.smartmirror.view.weather.graph.ForecastGraphHandler;
 import com.vynaloze.smartmirror.viewmodel.CalendarViewModel;
+import com.vynaloze.smartmirror.viewmodel.RandomCommentViewModel;
 import com.vynaloze.smartmirror.viewmodel.WeatherViewModel;
 
 import java.io.IOException;
@@ -62,6 +63,11 @@ public class MainActivity extends FragmentActivity {
         );
         WeatherForecastViewHandler weatherForecastViewHandler = new WeatherForecastViewHandler(dailyForecast);
         weatherViewModel.getDailyForecast().observe(this, weatherForecastViewHandler::updateData);
+
+        // random comments
+        TextView randomComment = findViewById(R.id.randomComment);
+        RandomCommentViewModel randomCommentViewModel = ViewModelProviders.of(this).get(RandomCommentViewModel.class);
+        randomCommentViewModel.getCurrentComment().observe(this, comment -> randomComment.setText(comment.getText()));
 
         // probably some bus info handling? todo
 

@@ -76,6 +76,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/forecastGraph" />
 
+    <!--RandomComment-->
+    <TextView
+        android:id="@+id/randomComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:layout_marginBottom="180dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/busWebView" />
+
     <!--Bus timetable-->
     <com.vynaloze.smartmirror.view.timetable.BusTimetableView
         android:id="@+id/busWebView"

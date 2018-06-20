@@ -61,4 +61,6 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
+    implementation 'com.googlecode:openbeans:1.0'
+    implementation 'com.univocity:univocity-parsers:2.6.3'
 }

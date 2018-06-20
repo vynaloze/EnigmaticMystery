@@ -34,10 +34,7 @@ public class WebServer extends NanoHTTPD {
         String uri = session.getUri();
         Map<String, List<String>> params = session.getParameters();
 
-        if (uri.equals("/weatherLocation")) {
-
-            mainActivity.runOnUiThread(() -> mainActivity.recreate());
-        }
+//            mainActivity.runOnUiThread(() -> mainActivity.recreate());
 
         return newFixedLengthResponse(Response.Status.OK, "text/plain", null);
     }
