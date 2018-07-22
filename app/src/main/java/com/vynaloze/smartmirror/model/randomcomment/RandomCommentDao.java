@@ -5,6 +5,8 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
+
 import java.util.List;
 
 @Dao

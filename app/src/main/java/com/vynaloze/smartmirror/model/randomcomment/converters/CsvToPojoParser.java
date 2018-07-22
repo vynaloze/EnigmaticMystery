@@ -1,7 +1,8 @@
-package com.vynaloze.smartmirror.model.randomcomment;
+package com.vynaloze.smartmirror.model.randomcomment.converters;
 
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
+import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ public class CsvToPojoParser {
     public static List<RandomComment> getFromAsset(String asset) {
         CsvParserSettings settings = new CsvParserSettings();
         settings.getFormat().setLineSeparator("\r\n");
+        settings.getFormat().setDelimiter(';');
         CsvParser parser = new CsvParser(settings);
         try {
             List<String[]> allRows = parser.parseAll(new BufferedReader(new InputStreamReader(ApplicationContextProvider.getContext().getAssets().open(asset))));
@@ -27,7 +29,7 @@ public class CsvToPojoParser {
     private static List<RandomComment> parseStringsToPojos(List<String[]> rows) {
         List<RandomComment> list = new ArrayList<>();
         for (String[] row : rows) {
-            list.add(new RandomComment(row[0], Double.valueOf(row[1])));
+            list.add(new RandomComment(row[0], Double.valueOf(row[1]), PartOfDayConverter.toPartOfDay(row[2])));
         }
         return list;
     }

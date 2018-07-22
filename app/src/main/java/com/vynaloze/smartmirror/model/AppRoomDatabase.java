@@ -4,8 +4,8 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.vynaloze.smartmirror.model.randomcomment.RandomComment;
 import com.vynaloze.smartmirror.model.randomcomment.RandomCommentDao;
+import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
 @Database(entities = {RandomComment.class}, version = 1)

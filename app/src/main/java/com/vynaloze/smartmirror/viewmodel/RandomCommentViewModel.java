@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.annimon.stream.Stream;
-import com.vynaloze.smartmirror.model.randomcomment.RandomComment;
 import com.vynaloze.smartmirror.model.randomcomment.RandomCommentRepository;
+import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
 
 import java.util.List;
 import java.util.Random;
@@ -35,7 +35,7 @@ public class RandomCommentViewModel extends ViewModel {
     }
 
     private class RandomUpdater implements Runnable {
-        private final int desiredUpdatePeriod = 3 * 60;  //fixme too - 6?
+        private final int desiredUpdatePeriod = 3 * 60;  //fixme (tweakme) too - 6?
         private final int possibleBias = 60;
         private Random random = new Random();
         private int minutesUntilNextUpdate = 0;
