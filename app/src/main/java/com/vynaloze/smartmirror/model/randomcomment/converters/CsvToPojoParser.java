@@ -2,6 +2,7 @@ package com.vynaloze.smartmirror.model.randomcomment.converters;
 
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
+import com.vynaloze.smartmirror.model.randomcomment.pojo.PartOfDay;
 import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
@@ -29,8 +30,17 @@ public class CsvToPojoParser {
     private static List<RandomComment> parseStringsToPojos(List<String[]> rows) {
         List<RandomComment> list = new ArrayList<>();
         for (String[] row : rows) {
-            list.add(new RandomComment(row[0], Double.valueOf(row[1]), PartOfDayConverter.toPartOfDay(row[2])));
+            list.add(new RandomComment(row[0], Double.valueOf(row[1]), toPartOfDay(row[2])));
         }
         return list;
+    }
+
+    private static PartOfDay toPartOfDay(String string) {
+        for (PartOfDay part : PartOfDay.values()) {
+            if (string.equals(part.name())) {
+                return part;
+            }
+        }
+        return PartOfDay.ALL;
     }
 }
