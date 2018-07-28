@@ -9,9 +9,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.vynaloze.smartmirror.R;
+import com.vynaloze.smartmirror.model.weather.pojo.Weather;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
+import com.vynaloze.smartmirror.view.weather.ViewHandler;
 
-public class ForecastGraphHandler {
+public class ForecastGraphHandler implements ViewHandler {
     private static final String TAG = "ForecastGraphHandler";
     private BarChart graph;
     private BarData barData;
@@ -25,7 +27,9 @@ public class ForecastGraphHandler {
         initAxes();
     }
 
-    public void updateData(BarDataSet dataSet) {
+    @Override
+    public void updateData(Weather weather) {
+        BarDataSet dataSet = WeatherToBarDataParser.toDataSet(weather);
         dataSet.setValueFormatter(new PeriodicPercentValueFormatter(dataSet));
         dataSet.setValueTextColor(whiteColor);
         dataSet.setValueTextSize(14f);

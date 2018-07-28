@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.annimon.stream.Stream;
 import com.github.mikephil.charting.charts.BarChart;
 import com.vynaloze.smartmirror.R;
 import com.vynaloze.smartmirror.controller.WebServer;
+import com.vynaloze.smartmirror.view.weather.ViewHandler;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastView;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastViewHandler;
 import com.vynaloze.smartmirror.view.weather.WeatherInfoViewHandler;
@@ -37,22 +39,18 @@ public class MainActivity extends FragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);   //stop screen from dimming
         setContentView(R.layout.activity_main);
 
+
         // calendar
         calendarTextView = findViewById(R.id.calendarTextView);
         CalendarViewModel calendarViewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
         calendarViewModel.getDate().observe(this, date -> calendarTextView.setText(date));
 
-        // forecast graph
-        forecastGraph = findViewById(R.id.forecastGraph);
-        ForecastGraphHandler graphHandler = new ForecastGraphHandler(forecastGraph);
-        WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
-        weatherViewModel.getPrecipProbabilityDataSet().observe(this, graphHandler::updateData);
 
-        // current weather
+        // --WEATHER--
+        // current info
         WeatherInfoViewHandler weatherInfoViewHandler = new WeatherInfoViewHandler(findViewById(R.id.weatherInfoView));
-        weatherViewModel.getCurrentWeatherInfo().observe(this, weatherInfoViewHandler::updateData);
-        weatherViewModel.getCurrentWeatherComment().observe(this, weatherInfoViewHandler::updateWeatherComment);
-
+        // graph
+        forecastGraph = findViewById(R.id.forecastGraph);
         // 3-day forecast
         List<WeatherForecastView> dailyForecast = Arrays.asList(
                 findViewById(R.id.weatherForecastView1),
@@ -61,15 +59,26 @@ public class MainActivity extends FragmentActivity {
                 findViewById(R.id.weatherForecastView4),
                 findViewById(R.id.weatherForecastView5)
         );
-        WeatherForecastViewHandler weatherForecastViewHandler = new WeatherForecastViewHandler(dailyForecast);
-        weatherViewModel.getDailyForecast().observe(this, weatherForecastViewHandler::updateData);
+
+        List<ViewHandler> viewHandlers = Arrays.asList(
+                weatherInfoViewHandler,
+                new ForecastGraphHandler(forecastGraph),
+                new WeatherForecastViewHandler(dailyForecast)
+        );
+
+        WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
+        weatherViewModel.getWeather().observe(this, weather -> Stream.of(viewHandlers).forEach(handler -> handler.updateData(weather)));
+        weatherViewModel.getWeatherSummary().observe(this, weatherInfoViewHandler::updateWeatherComment);
+
 
         // random comments
         TextView randomComment = findViewById(R.id.randomComment);
         RandomCommentViewModel randomCommentViewModel = ViewModelProviders.of(this).get(RandomCommentViewModel.class);
         randomCommentViewModel.getCurrentComment().observe(this, comment -> randomComment.setText(comment.getText()));
 
+
         // probably some bus info handling? todo
+
 
         // init web server
         WebServer webServer = new WebServer(this);

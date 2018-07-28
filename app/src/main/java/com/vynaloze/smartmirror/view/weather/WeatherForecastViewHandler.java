@@ -5,27 +5,29 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.vynaloze.smartmirror.model.weather.pojo.Weather;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class WeatherForecastViewHandler {
+public class WeatherForecastViewHandler implements ViewHandler {
     private List<WeatherForecastView> viewList;
 
     public WeatherForecastViewHandler(List<WeatherForecastView> viewList) {
         this.viewList = viewList;
     }
 
-    public void updateData(List<Map<String, String>> forecastList) {
+    @Override
+    public void updateData(Weather weather) {
         for (int i = 0; i < viewList.size(); i++) {
             WeatherForecastView view = viewList.get(i);
-            Map<String, String> forecast = forecastList.get(i); //todo it better?
+            Weather.DailyForecast forecast = weather.getDailyForecasts().get(i);
             view.getDayOfWeek().setText(getDayOfWeekWithOffset(i + 1));
-            prepareIcon(view.getForecastIcon(), forecast);
-            view.getUpperTemperature().setText(forecast.get("temperatureHigh"));
-            view.getLowerTemperature().setText(forecast.get("temperatureLow"));
+            prepareIcon(view.getForecastIcon(), forecast.getIcon());
+            view.getUpperTemperature().setText(String.valueOf(forecast.getTemperatureHigh()));
+            view.getLowerTemperature().setText(String.valueOf(forecast.getTemperatureLow()));
         }
     }
 
@@ -37,13 +39,13 @@ public class WeatherForecastViewHandler {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private void prepareIcon(WebView icon, Map<String, String> forecast) {
+    private void prepareIcon(WebView icon, String weatherIconType) {
         icon.getSettings().setJavaScriptEnabled(true);
         icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);  //disabled hardware acceleration.. strangely, it significantly improves performance
         icon.loadUrl("file:///android_asset/smallWeatherImage.html");
         icon.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
-                view.loadUrl("javascript:set_icon_type('" + forecast.get("icon") + "')");
+                view.loadUrl("javascript:set_icon_type('" + weatherIconType + "')");
             }
         });
     }

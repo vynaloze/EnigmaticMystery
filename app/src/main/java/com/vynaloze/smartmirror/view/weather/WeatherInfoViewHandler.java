@@ -5,18 +5,19 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.util.Map;
+import com.vynaloze.smartmirror.model.weather.pojo.Weather;
 
-public class WeatherInfoViewHandler {
+public class WeatherInfoViewHandler implements ViewHandler {
     private WeatherInfoView view;
 
     public WeatherInfoViewHandler(WeatherInfoView view) {
         this.view = view;
     }
 
-    public void updateData(Map<String, String> forecast) {
-        prepareIcon(view.getWeatherIcon(), forecast);
-        view.getTemperature().setText(forecast.get("temperature") + "°C");
+    @Override
+    public void updateData(Weather weather) {
+        prepareIcon(view.getWeatherIcon(), weather.getIcon());
+        view.getTemperature().setText(weather.getTemperature() + "°C");
     }
 
     public void updateWeatherComment(String comment) {
@@ -31,13 +32,13 @@ public class WeatherInfoViewHandler {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private void prepareIcon(WebView icon, Map<String, String> forecast) {
+    private void prepareIcon(WebView icon, String weatherIconType) {
         icon.getSettings().setJavaScriptEnabled(true);
         icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);  //disabled hardware acceleration.. strangely, it significantly improves performance
         icon.loadUrl("file:///android_asset/largeWeatherImage.html");
         icon.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
-                view.loadUrl("javascript:set_icon_type('" + forecast.get("icon") + "')");
+                view.loadUrl("javascript:set_icon_type('" + weatherIconType + "')");
             }
         });
     }
