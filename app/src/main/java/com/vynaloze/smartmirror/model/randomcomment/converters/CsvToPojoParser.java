@@ -4,6 +4,7 @@ import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 import com.vynaloze.smartmirror.model.randomcomment.pojo.PartOfDay;
 import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
+import com.vynaloze.smartmirror.model.randomcomment.pojo.WeatherType;
 import com.vynaloze.smartmirror.util.ApplicationContextProvider;
 
 import java.io.BufferedReader;
@@ -30,7 +31,7 @@ public class CsvToPojoParser {
     private static List<RandomComment> parseStringsToPojos(List<String[]> rows) {
         List<RandomComment> list = new ArrayList<>();
         for (String[] row : rows) {
-            list.add(new RandomComment(row[0], Double.valueOf(row[1]), toPartOfDay(row[2])));
+            list.add(new RandomComment(row[0], Double.valueOf(row[1]), toPartOfDay(row[2]), toWeatherType(row[3])));
         }
         return list;
     }
@@ -42,5 +43,14 @@ public class CsvToPojoParser {
             }
         }
         return PartOfDay.ALL;
+    }
+
+    private static WeatherType toWeatherType(String string) {
+        for (WeatherType type : WeatherType.values()) {
+            if (string.equals(type.name())) {
+                return type;
+            }
+        }
+        return WeatherType.ALL;
     }
 }

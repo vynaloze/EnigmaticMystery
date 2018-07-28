@@ -8,6 +8,7 @@ import android.util.Log;
 import com.annimon.stream.Stream;
 import com.vynaloze.smartmirror.model.randomcomment.RandomCommentRepository;
 import com.vynaloze.smartmirror.model.randomcomment.pojo.RandomComment;
+import com.vynaloze.smartmirror.model.weather.pojo.Weather;
 
 import java.util.List;
 import java.util.Random;
@@ -19,6 +20,7 @@ public class RandomCommentViewModel extends ViewModel {
     private static final int PERIOD = 17;
     private RandomCommentRepository repository;
     private MutableLiveData<RandomComment> currentComment;
+    private Weather currentWeather;
 
     public LiveData<RandomComment> getCurrentComment() {
         if (currentComment == null) {
@@ -27,6 +29,10 @@ public class RandomCommentViewModel extends ViewModel {
             updateComment();
         }
         return currentComment;
+    }
+
+    public void putCurrentWeather(Weather weather) {
+        currentWeather = weather;
     }
 
     private void updateComment() {
@@ -62,7 +68,7 @@ public class RandomCommentViewModel extends ViewModel {
         }
 
         private RandomComment pickCommentUsingRelativeProbability() {
-            List<RandomComment> comments = repository.getAllComments();
+            List<RandomComment> comments = repository.getAllComments(currentWeather);
             double probabilitySum = Stream.of(comments).mapToDouble(RandomComment::getProbability).sum();
             double pickedValue = random.nextDouble() * probabilitySum;
             double cumulativeProbability = 0.0;

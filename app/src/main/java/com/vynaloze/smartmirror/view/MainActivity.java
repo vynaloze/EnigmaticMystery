@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
-import com.github.mikephil.charting.charts.BarChart;
 import com.vynaloze.smartmirror.R;
 import com.vynaloze.smartmirror.controller.WebServer;
 import com.vynaloze.smartmirror.view.weather.ViewHandler;
@@ -29,7 +28,6 @@ import java.util.List;
 public class MainActivity extends FragmentActivity {
 
     TextView calendarTextView; //todo ui to classes (really??)
-    BarChart forecastGraph;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -46,12 +44,13 @@ public class MainActivity extends FragmentActivity {
         calendarViewModel.getDate().observe(this, date -> calendarTextView.setText(date));
 
 
+        // random comments
+        TextView randomComment = findViewById(R.id.randomComment);
+        RandomCommentViewModel randomCommentViewModel = ViewModelProviders.of(this).get(RandomCommentViewModel.class);
+        randomCommentViewModel.getCurrentComment().observe(this, comment -> randomComment.setText(comment.getText()));
+
+
         // --WEATHER--
-        // current info
-        WeatherInfoViewHandler weatherInfoViewHandler = new WeatherInfoViewHandler(findViewById(R.id.weatherInfoView));
-        // graph
-        forecastGraph = findViewById(R.id.forecastGraph);
-        // 3-day forecast
         List<WeatherForecastView> dailyForecast = Arrays.asList(
                 findViewById(R.id.weatherForecastView1),
                 findViewById(R.id.weatherForecastView2),
@@ -60,21 +59,20 @@ public class MainActivity extends FragmentActivity {
                 findViewById(R.id.weatherForecastView5)
         );
 
+        WeatherInfoViewHandler weatherInfoViewHandler = new WeatherInfoViewHandler(findViewById(R.id.weatherInfoView));
+
         List<ViewHandler> viewHandlers = Arrays.asList(
                 weatherInfoViewHandler,
-                new ForecastGraphHandler(forecastGraph),
+                new ForecastGraphHandler(findViewById(R.id.forecastGraph)),
                 new WeatherForecastViewHandler(dailyForecast)
         );
 
         WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
-        weatherViewModel.getWeather().observe(this, weather -> Stream.of(viewHandlers).forEach(handler -> handler.updateData(weather)));
+        weatherViewModel.getWeather().observe(this, weather -> {
+            Stream.of(viewHandlers).forEach(handler -> handler.updateData(weather));
+            randomCommentViewModel.putCurrentWeather(weather);
+        });
         weatherViewModel.getWeatherSummary().observe(this, weatherInfoViewHandler::updateWeatherComment);
-
-
-        // random comments
-        TextView randomComment = findViewById(R.id.randomComment);
-        RandomCommentViewModel randomCommentViewModel = ViewModelProviders.of(this).get(RandomCommentViewModel.class);
-        randomCommentViewModel.getCurrentComment().observe(this, comment -> randomComment.setText(comment.getText()));
 
 
         // probably some bus info handling? todo

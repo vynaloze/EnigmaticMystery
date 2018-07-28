@@ -1,27 +1,31 @@
-Cześć, piękna!                                   ; 2    ; ALL
-Cześć, przystojniaku!                            ; 2    ; ALL
-Hello world!                                     ; 1    ; ALL
-Rundka w pokerka?                                ; 0.01 ; ALL
-KILL ALL HUMANS!                                 ; 0.001; ALL
-NullPointerException!\nHey, it's just a prank.   ; 0.005; ALL
-Tak, chyba musisz umyć głowę.                    ; 0.05 ; ALL
-sudo zrób_mi_tosta --ser --salami                ; 0.01 ; ALL
-Czytam Twoją pocztę.                             ; 0.001; ALL
-Już po pierwszej kawie?                          ; 1    ; MORNING
-Jak się spało?                                   ; 2    ; MORNING
-Miłego dnia!                                     ; 2    ; MORNING
-Dzieńdoberek!                                    ; 2    ; MORNING
-Panie Janie, pora wstać!                         ; 1    ; MORNING
-Pięknie drą ryja te ptaszki, prawda?             ; 0.05 ; MORNING
-To już południe? Ale ten czas leci...            ; 1    ; AFTERNOON
-Przerwa obiadowa!                                ; 1    ; AFTERNOON
-Kieeedyyy obiaaaad???                            ; 2    ; AFTERNOON
-Ten zapach, mniam...                             ; 1    ; AFTERNOON
-Zakupy zrobione? Tesco czynne tylko do północy!  ; 0.5  ; EVENING
-Może by coś ugotować na jutro?                   ; 1    ; EVENING
-Idziemy na spacer?\nTylko nie zapomnij powerbanka; 1    ; EVENING
-Chyba czas na tosta.\nZrób jednego dla mnie!     ; 2    ; EVENING
-Słodkich snów :)                                 ; 2    ; NIGHT
-Strasznych koszmarów :)                          ; 0.1  ; NIGHT
-Nadal na nogach? Bo jutro nie wstaniesz!         ; 1    ; NIGHT
-Dobranoc. Tylko nie siedź za długo!              ; 2    ; NIGHT
+Cześć, piękna!                                   ; 2    ; ALL      ; ALL
+Cześć, przystojniaku!                            ; 2    ; ALL      ; ALL
+Hello world!                                     ; 1    ; ALL      ; ALL
+Szybka rundka w pokerka?                         ; 0.01 ; ALL      ; ALL
+KILL ALL HUMANS!                                 ; 0.001; ALL      ; ALL
+NullPointerException!\nHey, it's just a prank.   ; 0.005; ALL      ; ALL
+Tak, chyba musisz umyć głowę.                    ; 0.05 ; ALL      ; ALL
+sudo zrób_mi_tosta.sh --ser --salami             ; 0.01 ; ALL      ; ALL
+Czytam Twoją pocztę.                             ; 0.001; ALL      ; ALL
+No cześć.                                        ; 2    ; ALL      ; ALL
+Elo.                                             ; 2    ; ALL      ; ALL
+Już po pierwszej kawie?                          ; 1    ; MORNING  ; ALL
+Jak się spało?                                   ; 2    ; MORNING  ; ALL
+Miłego dnia!                                     ; 2    ; MORNING  ; ALL
+Dzieńdoberek!                                    ; 2    ; MORNING  ; ALL
+Panie Janie, pora wstać!                         ; 1    ; MORNING  ; ALL
+Pięknie drą ryja te ptaszki, prawda?             ; 0.05 ; MORNING  ; ALL
+To już południe?\nAleż ten czas leci...          ; 1    ; AFTERNOON; ALL
+Przerwa obiadowa!                                ; 1    ; AFTERNOON; ALL
+Kieeedyyy obiaaaad???                            ; 2    ; AFTERNOON; ALL
+Ten zapach, mniam...                             ; 1    ; AFTERNOON; ALL
+Zakupy zrobione?\nTesco czynne tylko do północy! ; 0.5  ; EVENING  ; ALL
+Może by coś ugotować na jutro?                   ; 1    ; EVENING  ; ALL
+Idziemy na spacer?\nTylko nie zapomnij powerbanka; 1    ; EVENING  ; ALL
+Chyba czas na tosta.\nZrób jednego dla mnie!     ; 2    ; EVENING  ; ALL
+Słodkich snów :)                                 ; 2    ; NIGHT    ; ALL
+Strasznych koszmarów :)                          ; 0.1  ; NIGHT    ; ALL
+Nadal na nogach?\nBo jutro nie wstaniesz!        ; 1    ; NIGHT    ; ALL
+Dobranoc.\nTylko nie siedź za długo!             ; 2    ; NIGHT    ; ALL
+Uff, dobrze, że ja się nie pocę ^^               ; 1000 ; ALL      ; HOT
+DUPADUPA                                         ; 10000; ALL      ; COLD
