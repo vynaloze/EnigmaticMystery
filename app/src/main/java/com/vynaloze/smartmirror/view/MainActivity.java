@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 import com.vynaloze.smartmirror.R;
-import com.vynaloze.smartmirror.controller.WebServer;
 import com.vynaloze.smartmirror.view.weather.ViewHandler;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastView;
 import com.vynaloze.smartmirror.view.weather.WeatherForecastViewHandler;
@@ -20,7 +19,6 @@ import com.vynaloze.smartmirror.viewmodel.CalendarViewModel;
 import com.vynaloze.smartmirror.viewmodel.RandomCommentViewModel;
 import com.vynaloze.smartmirror.viewmodel.WeatherViewModel;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,14 +77,14 @@ public class MainActivity extends FragmentActivity {
 
 
         // init web server
-        WebServer webServer = new WebServer(this);
-        try {
-            webServer.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        TextView ipAddress = findViewById(R.id.ipAddress);
-        ipAddress.setText(webServer.getIpAddress());
+//        WebServer webServer = new WebServer(this);
+//        try {
+//            webServer.start();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        TextView ipAddress = findViewById(R.id.ipAddress);
+//        ipAddress.setText(webServer.getIpAddress());
 
     }
 

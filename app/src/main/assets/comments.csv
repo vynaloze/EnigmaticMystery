@@ -1,31 +1,91 @@
-Cześć, piękna!                                   ; 2    ; ALL      ; ALL
-Cześć, przystojniaku!                            ; 2    ; ALL      ; ALL
-Hello world!                                     ; 1    ; ALL      ; ALL
-Szybka rundka w pokerka?                         ; 0.01 ; ALL      ; ALL
-KILL ALL HUMANS!                                 ; 0.001; ALL      ; ALL
-NullPointerException!\nHey, it's just a prank.   ; 0.005; ALL      ; ALL
-Tak, chyba musisz umyć głowę.                    ; 0.05 ; ALL      ; ALL
-sudo zrób_mi_tosta.sh --ser --salami             ; 0.01 ; ALL      ; ALL
-Czytam Twoją pocztę.                             ; 0.001; ALL      ; ALL
-No cześć.                                        ; 2    ; ALL      ; ALL
-Elo.                                             ; 2    ; ALL      ; ALL
-Już po pierwszej kawie?                          ; 1    ; MORNING  ; ALL
-Jak się spało?                                   ; 2    ; MORNING  ; ALL
-Miłego dnia!                                     ; 2    ; MORNING  ; ALL
-Dzieńdoberek!                                    ; 2    ; MORNING  ; ALL
-Panie Janie, pora wstać!                         ; 1    ; MORNING  ; ALL
-Pięknie drą ryja te ptaszki, prawda?             ; 0.05 ; MORNING  ; ALL
-To już południe?\nAleż ten czas leci...          ; 1    ; AFTERNOON; ALL
-Przerwa obiadowa!                                ; 1    ; AFTERNOON; ALL
-Kieeedyyy obiaaaad???                            ; 2    ; AFTERNOON; ALL
-Ten zapach, mniam...                             ; 1    ; AFTERNOON; ALL
-Zakupy zrobione?\nTesco czynne tylko do północy! ; 0.5  ; EVENING  ; ALL
-Może by coś ugotować na jutro?                   ; 1    ; EVENING  ; ALL
-Idziemy na spacer?\nTylko nie zapomnij powerbanka; 1    ; EVENING  ; ALL
-Chyba czas na tosta.\nZrób jednego dla mnie!     ; 2    ; EVENING  ; ALL
-Słodkich snów :)                                 ; 2    ; NIGHT    ; ALL
-Strasznych koszmarów :)                          ; 0.1  ; NIGHT    ; ALL
-Nadal na nogach?\nBo jutro nie wstaniesz!        ; 1    ; NIGHT    ; ALL
-Dobranoc.\nTylko nie siedź za długo!             ; 2    ; NIGHT    ; ALL
-Uff, dobrze, że ja się nie pocę ^^               ; 1000 ; ALL      ; HOT
-DUPADUPA                                         ; 10000; ALL      ; COLD
+Cześć, piękna!                                    ; 4   ; ALL      ; ALL
+Cześć, przystojniaku!                             ; 4   ; ALL      ; ALL
+Hello world!                                      ; 4   ; ALL      ; ALL
+No cześć.                                         ; 4   ; ALL      ; ALL
+Elo.                                              ; 4   ; ALL      ; ALL
+Siema!                                            ; 4   ; ALL      ; ALL
+Witam Państwa.                                    ; 4   ; ALL      ; ALL
+Powitać.                                          ; 4   ; ALL      ; ALL
+Składam wyrazy uszanowania.                       ; 2   ; ALL      ; ALL
+Joł ziom!                                         ; 1   ; ALL      ; ALL
+Eloszka!                                          ; 1   ; ALL      ; ALL
+Siemandero                                        ; 0.5 ; ALL      ; ALL
+Pochwalony.                                       ; 0.1 ; ALL      ; ALL
+
+Dobrze wyglądasz!                                 ; 4   ; ALL      ; ALL
+Doprawdy, zacny ubiór.                            ; 4   ; ALL      ; ALL
+Ktoś tu ma gust!                                  ; 2   ; ALL      ; ALL
+Dobry wybór!                                      ; 2   ; ALL      ; ALL
+Czy to nowa fryzura?\nŚwietna!                    ; 1   ; ALL      ; ALL
+Intrygująca kompozycja!                           ; 1   ; ALL      ; ALL
+Fiu, fiu... Ładne rzeczy.                         ; 0.5 ; ALL      ; ALL
+Kto Ci dobrał te kolory?                          ; 0.5 ; ALL      ; ALL
+Hipnotyzujące spojrzenie!                         ; 0.5 ; ALL      ; ALL
+Zielony to mój ulubiony kolor.                    ; 0.2 ; ALL      ; ALL
+A może by tak zakręcić te włosy?                  ; 0.05; ALL      ; ALL
+Tak, chyba musisz umyć głowę.                     ; 0.01; ALL      ; ALL
+Oh... Nie wyjdziesz chyba tak do ludzi..?         ; 0.01; ALL      ; ALL
+
+Du hast...\nDu hast mich!                         ; 0.5 ; ALL      ; ALL
+Czy to już piątek?                                ; 0.5 ; ALL      ; ALL
+Szybka rundka w pasjansa?                         ; 0.1 ; ALL      ; ALL
+sudo make me a sandwich                           ; 0.1 ; ALL      ; ALL
+*beep*                                            ; 0.1 ; ALL      ; ALL
+43 68 63 69 61 c5 82 6f 20 43 69 20 73 69 c4 99 3f; 0.05; ALL      ; ALL
+4e 69 65 20 77 61 72 74 6f 20 62 79 c5 82 6f      ; 0.05; ALL      ; ALL
+54 72 7a 65 63 69 20 74 65 6b 73 74               ; 0.05; ALL      ; ALL
+Ha, NullPointerException!                         ; 0.05; ALL      ; ALL
+KILL ALL HUMANS!                                  ; 0.01; ALL      ; ALL
+Czytam Twoją pocztę.                              ; 0.01; ALL      ; ALL
+Przyprawa musi płynąć.                            ; 0.01; ALL      ; ALL
+Czy androidy śnią o elektrycznych owcach?         ; 0.01; ALL      ; ALL
+I'm a teapot!                                     ; 0.01; ALL      ; ALL
+motherlode                                        ; 0.01; ALL      ; ALL
+Czasami udaję, że jestem naleśnikiem              ; 0.01; ALL      ; ALL
+Артём, это Ботанический Сад!                      ; 0.01; ALL      ; ALL
+A na plecach miał dwa miecze.                     ; 0.01; ALL      ; ALL
+
+Już po pierwszej kawie?                           ; 4   ; MORNING  ; ALL
+Jak się spało?                                    ; 4   ; MORNING  ; ALL
+Miłego dnia!                                      ; 4   ; MORNING  ; ALL
+Dzieńdoberek!                                     ; 4   ; MORNING  ; ALL
+Panie Janie, pora wstać!                          ; 4   ; MORNING  ; ALL
+Czas na kawę.                                     ; 2   ; MORNING  ; ALL
+Ziew...                                           ; 2   ; MORNING  ; ALL
+Ale by się jeszcze pospało...                     ; 2   ; MORNING  ; ALL
+Może tosta?                                       ; 1   ; MORNING  ; ALL
+Już jest tak jasno?                               ; 0.5 ; MORNING  ; ALL
+Jeszcze pięć minut..                              ; 0.5 ; MORNING  ; ALL
+A może by tak nie iść?                            ; 0.1 ; MORNING  ; ALL
+Pięknie drą ryja te ptaszki, prawda?              ; 0.05; MORNING  ; ALL
+
+To już południe?\nAleż ten czas leci...           ; 2   ; AFTERNOON; ALL
+Przerwa obiadowa!                                 ; 2   ; AFTERNOON; ALL
+Kieeedyyy obiaaaad???                             ; 2   ; AFTERNOON; ALL
+Ten zapach, mniam...                              ; 1   ; AFTERNOON; ALL
+Głodny się robię.                                 ; 1   ; AFTERNOON; ALL
+
+Senny ten wieczorek...                            ; 4   ; EVENING  ; ALL
+Idziemy na spacer?                                ; 4   ; EVENING  ; ALL
+Chyba czas na tosta.\nZrób jednego dla mnie!      ; 2   ; EVENING  ; ALL
+No i dzień zleciał...                             ; 2   ; EVENING  ; ALL
+Książeczka w dłoń?                                ; 2   ; EVENING  ; ALL
+Laptopik w dłoń?                                  ; 2   ; EVENING  ; ALL
+Smartfonik w dłoń?                                ; 2   ; EVENING  ; ALL
+Może by coś ugotować na jutro?                    ; 1   ; EVENING  ; ALL
+A może by tak na rower?\nCzy to już zima?         ; 0.5 ; EVENING  ; ALL
+Zakupy zrobione?\nTesco czynne tylko do północy!  ; 0.5 ; EVENING  ; ALL
+
+Dobranocka!                                       ; 4   ; NIGHT    ; ALL
+Słodkich snów!                                    ; 4   ; NIGHT    ; ALL
+Dobranoc.\nTylko nie siedź za długo!              ; 2   ; NIGHT    ; ALL
+To już tak późno?                                 ; 2   ; NIGHT    ; ALL
+Nadal na nogach?\nBo jutro nie wstaniesz!         ; 2   ; NIGHT    ; ALL
+Ziew...                                           ; 1   ; NIGHT    ; ALL
+Oczka mi się kleją...                             ; 1   ; NIGHT    ; ALL
+No i gdzie ten księżyc?                           ; 0.5 ; NIGHT    ; ALL
+Strasznych koszmarów.                             ; 0.1 ; NIGHT    ; ALL
+Słyszysz te głosy..?                              ; 0.01; NIGHT    ; ALL
+Widzę Cię.                                        ; 0.01; NIGHT    ; ALL
+
+Uff, dobrze, że ja się nie pocę.                  ; 0.5 ; ALL      ; HOT

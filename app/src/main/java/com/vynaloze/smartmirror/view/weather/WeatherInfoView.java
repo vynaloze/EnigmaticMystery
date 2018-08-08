@@ -50,8 +50,8 @@ public class WeatherInfoView extends ConstraintLayout {
 
     private void initializeTextSwitcher() {
         Context context = ApplicationContextProvider.getContext();
-        textComment.setInAnimation(context, android.R.anim.fade_in);        //todo slide from bottom or another better animation
-        textComment.setOutAnimation(context, android.R.anim.fade_out);
+        textComment.setInAnimation(context, R.anim.slide_in_bottom);
+        textComment.setOutAnimation(context, R.anim.slide_out_bottom);
         textComment.addView(prepareTextView(context));
         textComment.addView(prepareTextView(context));
     }

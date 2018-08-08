@@ -35,7 +35,7 @@ public class WeatherForecastViewHandler implements ViewHandler {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, offset);
         SimpleDateFormat format = new SimpleDateFormat("EEE", Locale.getDefault());
-        return format.format(calendar.getTime());
+        return format.format(calendar.getTime()).substring(0, 2) + ".";
     }
 
     @SuppressLint("SetJavaScriptEnabled")
