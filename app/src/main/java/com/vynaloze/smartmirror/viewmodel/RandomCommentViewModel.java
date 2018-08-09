@@ -41,7 +41,7 @@ public class RandomCommentViewModel extends ViewModel {
     }
 
     private class RandomUpdater implements Runnable {
-        private final int desiredUpdatePeriod = 5 * 60;  //fixme (tweakme) too - 6?
+        private final int desiredUpdatePeriod = 210;  //fixme (tweakme). //3,5 (+-1)h
         private final int possibleBias = 60;
         private Random random = new Random();
         private int minutesUntilNextUpdate = 0;
